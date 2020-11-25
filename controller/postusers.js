@@ -1,5 +1,7 @@
 const express = require('express'); 
 const model = require('../models/index');// GET users listing.
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10);
 
 const postUsers = async function (req, res, next) {
   try {
@@ -10,9 +12,11 @@ const postUsers = async function (req, res, next) {
       telephone,
       address
     } = req.body;
+    const hash = bcrypt.hashSync(password, salt);
+    
     const users = await model.users.create({ 
       email,
-      password,
+      password : hash,
       name,
       telephone,
       address

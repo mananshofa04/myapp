@@ -9,6 +9,8 @@ var indexRouter = require('./routes/index');
 const users = require('./routes/users'); 
 const transaction = require('./routes/transaction');
 const product = require('./routes/product'); 
+const masuk = require('./routes/sign'); 
+require('dotenv').config();
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/auth', masuk);
 app.use('/users', users);
 app.use('/transaction', transaction);
 app.use('/product', product);

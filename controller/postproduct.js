@@ -1,5 +1,6 @@
 const express = require('express'); 
 const model = require('../models/index');// GET users listing.
+ 
 
 const postProduct = async function (req, res, next) {
   try {
@@ -9,6 +10,7 @@ const postProduct = async function (req, res, next) {
       price,
       stock
     } = req.body;
+
     const product = await model.products.create({
       sku,
       name,
